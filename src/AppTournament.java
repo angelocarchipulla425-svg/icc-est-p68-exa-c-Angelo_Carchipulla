@@ -1,5 +1,5 @@
-import Controllers.TournamentController;
 import models.Tournament;
+import controllers.TournamentController;
 import models.Athlete;
 import models.Club;
 
