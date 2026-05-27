@@ -1,3 +1,7 @@
+import Controllers.TournamentController;
+import models.Tournament;
+import models.Athlete;
+import models.Club;
 
 public class AppTournament {
 
@@ -135,6 +139,24 @@ public class AppTournament {
         }
 
         public static void main(String[] args) {
+                TournamentController controller = new TournamentController();
+                Tournament[] tournaments = AppTournament.getTournaments();
+
+                System.out.println("---Listado Original---");
+                for (Tournament t : tournaments)
+                        System.out.println(t.getName() + ": " + t.getTotalStarterPoints() + " puntos");
+
+                Tournament[] sorted = controller.sortSelectionDesc(tournaments);
+                System.out.println("---Ordenado (Descendente)---");
+                for (Tournament t : sorted)
+                        System.out.println(t.getName() + ": " + t.getTotalStarterPoints() + " puntos");
+
+                int[] tests = { 70, 33 };
+                for (int puntos : tests) {
+                        Tournament res = controller.binarySearchByTotalStarterPointsFilaB(sorted, puntos);
+                        System.out.println("Búsqueda de " + puntos + " puntos: "
+                                        + (res != null ? res.getName() : "No encontrado"));
+                }
                 /**
                  * Aquí debe estar el código para ejecutar la aplicación, utilizando el
                  * TournamentController para mostrar los resultados de cada torneo.
